@@ -19,7 +19,7 @@ y_error = ([])
 y_def = ([])
 y_def_error = ([])
 
-
+#Reads the txt file
 for i in text:
     if not i[0] == "#": 
         for j in i.split(" "):
