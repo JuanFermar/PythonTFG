@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from io import open
 
+#COMENTARIO DE PRUEBA
+
 archivo_text=open("C:\\Users\\JuanF\\Desktop\\TFG\\texto_prueba.txt", "r")
 
 text = archivo_text.read().split("\n")
