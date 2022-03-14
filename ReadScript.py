@@ -4,7 +4,6 @@ import numpy as np
 from io import open
 
 #COMENTARIO DE PRUEBA
-#COMENTARIO DE PRUEBA 2
 
 archivo_text=open("C:\\Users\\JuanF\\Desktop\\TFG\\texto_prueba.txt", "r")
 
