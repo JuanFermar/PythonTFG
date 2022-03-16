@@ -2,12 +2,10 @@ from io import open
 
 #COMENTARIO DE PRUEBA
 
-
 def ReadVg(dir):
     archivo_text=open(dir, "r")
 
     text = archivo_text.read().split("\n")
-
     archivo_text.close()
 
     error = False
@@ -39,6 +37,7 @@ def ReadVg(dir):
         y_def_error.append(abs((10**6) * y_error[i]))
 
     return(x, y_def, y_def_error)
+
 
 
 
