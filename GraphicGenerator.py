@@ -3,58 +3,60 @@ import matplotlib.pyplot as plt
 
 #"C:\\Users\\JuanF\\Desktop\\TFG\\Experimento1\\current.dat"
 
-log=True
-error=False
-tipe = True
+# log=False
+# error=False
+# tipe = False
 
-prueba=["C://Users//JuanF//Desktop//TFG//Experimento1//14nm.dat", "C://Users//JuanF//Desktop//TFG//Experimento1//12nm.dat"]
+# prueba=["C://Users//JuanF//Desktop//TFG//Experimento1//$V_G$=0.7.dat", "C://Users//JuanF//Desktop//TFG//Experimento1//$V_G$=0.6.dat"]
 
-def graphId(x, y, e, log, type, error, num):    #Graphic generator of Vg vs Id
+def graphId(x, y, e, log, type, error, num, name):    #Graphic generator of Vg vs Id
 
-    if log:
+    if log==1:
         plt.yscale("log")       #Log Scale
         
     if num == 0:
-        if error:
-            plt.plot(x,y, 'bo-')
-            plt.plot(x,e, 'bo--')
+        if error==1:
+            plt.plot(x,y, 'bo-', label=name)
+            plt.plot(x,e, 'bo--', label=name+" error")
         else:
-            plt.plot(x,y, 'bo-')
+            plt.plot(x,y, 'bo-', label=name)
 
     elif num == 1:
-        if error:
-            plt.plot(x,y, 'rx-')
-            plt.plot(x,e, 'rx--')
+        if error==1:
+            plt.plot(x,y, 'r^-', label=name)
+            plt.plot(x,e, 'r^--', label=name+" error")
         else:
-            plt.plot(x,y, 'rx-')
+            plt.plot(x,y, 'r^-', label=name)
 
     elif num == 2:
-        if error:
-            plt.plot(x,y, 'gs-')
-            plt.plot(x,e, 'gs--')
+        if error==1:
+            plt.plot(x,y, 'yD-', label=name)
+            plt.plot(x,e, 'yD--', label=name+" error")
         else:
-            plt.plot(x,y, 's-')
+            plt.plot(x,y, 'yD-', label=name)
 
     elif num == 3:
-        if error:
-            plt.plot(x,y, 'm^-')
-            plt.plot(x,e, 'm^--')
+        if error==1:
+            plt.plot(x,y, 'mx-', label=name)
+            plt.plot(x,e, 'mx--', label=name+" error")
         else:
-            plt.plot(x,y, 'm^-')
+            plt.plot(x,y, 'mx-', label=name)
 
     elif num == 4:
-        if error:
-            plt.plot(x,y, 'yD-')
-            plt.plot(x,e, 'yD--')
+        if error==1:
+            plt.plot(x,y, 'g+-', label=name)
+            plt.plot(x,e, 'g+--', label=name+" error")
+        else:
+            plt.plot(x,y, 'g+-', label=name)
 
     else:
-        if error:
-            plt.plot(x,y, 'k+-')
-            plt.plot(x,e, 'k+--')
+        if error==1:
+            plt.plot(x,y, 'k+-', label=name)
+            plt.plot(x,e, 'k+--', label=name+" error")
         else:
-            plt.plot(x,y, 'k+-')
+            plt.plot(x,y, 'k+-', label=name)
 
-    if type:
+    if type==1:
         plt.xlabel('$V_G (V)$') #axes
     else:
         plt.xlabel('$V_D (V)$')
@@ -62,26 +64,31 @@ def graphId(x, y, e, log, type, error, num):    #Graphic generator of Vg vs Id
     plt.ylabel('$I_D (μA)$')
 
 
-def graphManage(lista, log, type, error):
+def graphManage(lista, log, type, error, title):
+    if len(lista) != 0: 
+        plt.figure()
 
-    plt.figure()
-    
-    for i in range(len(lista)):
-        if type:
-            grafica=rs.ReadVg(lista[i])
-        else:
-            grafica=rs.ReadVg(lista[i]) #FUTURE READVD
+        for i in range(len(lista)):
+            if type == 1:
+                grafica=rs.ReadVg(lista[i])
+            else:
+                grafica=rs.ReadVd(lista[i]) #FUTURE READVD
+            
+            name2=lista[i].split("//")
+            name1=name2[len(name2)-1].split(".")
+            name=name1[0]
+
+            x=grafica[0] 
+            y=grafica[1]
+            e=grafica[2]
+
+            graphId(x, y, e, log, type, error, i, name)
+            plt.legend(loc="best", facecolor="w", fontsize=8)
+        plt.title(title)
+        plt.show()
 
 
-        x=grafica[0] 
-        y=grafica[1]
-        e=grafica[2]
-        graphId(x, y, e, log, type, error, i)
-    #plt.legend(loc="best", facecolor="w", fontsize=16)
-    plt.show()
-
-
-graphManage(prueba, log, tipe, error)
+#graphManage(prueba, log, tipe, error)
 
 
 # Aqui para ver el estilo de los puntos y las lineas
