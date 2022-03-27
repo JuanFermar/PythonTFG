@@ -1,7 +1,11 @@
+from PIL import ImageTk
+import PIL.Image
 from tkinter import *
 from functools import partial
 from tkinter import filedialog
 from tkinter import messagebox
+import webbrowser
+
 import GraphicGenerator as gg
 root= Tk()
 
@@ -78,10 +82,6 @@ def preGraph():
     except:
         messagebox.showerror(title= "ERROR", message="This files are not suitable")
 
-def Exit():
-    valor = messagebox.askokcancel("Exit", "Do you want to exit now?")
-    if valor:
-        root.destroy()
 
 def Default():
     graph1.set("")
@@ -90,15 +90,49 @@ def Default():
     vgChoice.set(1)
     errorChoice.set(1)
 
+def callback():
+    webbrowser.open_new("https://www.google.es/")
+    pop.destroy
 
 def CodeSource():
-    messagebox.showwarning("Source Code", "You can download the .py file here: \n" "hhtpp lo que sea")
 
+    global pop
+    pop = Toplevel(root)
+    pop.title("Source Code")
+    pop.geometry("300x135")
+    pop.config(bg="white")
+
+    global pic 
+    global new_pic
+
+    pic = PIL.Image.open("C:\\PythonTFG\\github.png")
+
+    resized = pic.resize((40, 40), PIL.Image.ANTIALIAS)
     
+    new_pic = ImageTk.PhotoImage(resized)
+
+    pop_label = Label(pop, text = "Do you want to see the Source Code?", background="white")
+    pop_label.grid(row=0, column=1, padx=5, pady=5)
+
+    image_Frame = Frame(pop, background="white")    
+    image_Frame.grid(row=1, column=0, padx=10, pady=10)
+
+    but_Frame = Frame(pop, background="white")
+    but_Frame.grid(row=1, column=1, padx=10, pady=10)
+
+    my_icon = Label(image_Frame, image = new_pic, borderwidth=0)
+    my_icon.grid(row=0, column=0, padx=10, pady=10)
+
+    yes = Button(but_Frame, text="Yes", command= callback)
+    yes.grid(row=0, column=0, padx=10, pady=10)
+
+    no = Button(but_Frame, text="No", command=pop.destroy)
+    no.grid(row=0, column=2, padx=10, pady=10)
+       
+
 #-----------------------MENUSES---------------------
 #     
 generalMenu=Menu(barraMenu, tearoff=0)
-generalMenu.add_command(label="Exit", command=Exit)
 generalMenu.add_command(label="Default", command=Default)
 generalMenu.add_command(label="Source Code...", command=CodeSource)
 
