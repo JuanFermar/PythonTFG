@@ -137,7 +137,7 @@ def CodeSource():   #generate the window with github url
        
 
 #-----------------------MENUS---------------------
-#    
+  
 generalMenu=Menu(barraMenu, tearoff=0)
 generalMenu.add_command(label="Default", command=Default)
 generalMenu.add_command(label="Source Code...", command=CodeSource)
