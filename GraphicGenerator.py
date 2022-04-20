@@ -8,43 +8,37 @@ def graphId(x, y, e, log, type, error, num, name):    #Graphic generator of Vg/V
         
     if num == 0:    #Define the style in function the amount of curves (num) 
         if error==1:    #we discuss if we want to graph the error
-            plt.plot(x,y, 'bo-', label=name)
-            plt.plot(x,e, 'bo--', label=name+" error")
+            plt.errorbar(x,y, yerr=e, label=name + " error")
         else:
             plt.plot(x,y, 'bo-', label=name)
-
+            
     elif num == 1:
         if error==1:
-            plt.plot(x,y, 'r^-', label=name)
-            plt.plot(x,e, 'r^--', label=name+" error")
+            plt.errorbar(x,y, yerr=e, label=name + " error")
         else:
             plt.plot(x,y, 'r^-', label=name)
 
     elif num == 2:
         if error==1:
-            plt.plot(x,y, 'yD-', label=name)
-            plt.plot(x,e, 'yD--', label=name+" error")
+            plt.errorbar(x,y, yerr=e, label=name + " error")
         else:
             plt.plot(x,y, 'yD-', label=name)
 
     elif num == 3:
         if error==1:
-            plt.plot(x,y, 'mx-', label=name)
-            plt.plot(x,e, 'mx--', label=name+" error")
+            plt.errorbar(x,y, yerr=e, label=name + " error")
         else:
             plt.plot(x,y, 'mx-', label=name)
 
     elif num == 4:
         if error==1:
-            plt.plot(x,y, 'g+-', label=name)
-            plt.plot(x,e, 'g+--', label=name+" error")
+            plt.errorbar(x,y, yerr=e, label=name + " error")
         else:
             plt.plot(x,y, 'g+-', label=name)
 
     else:
         if error==1:
-            plt.plot(x,y, 'k+-', label=name)
-            plt.plot(x,e, 'k+--', label=name+" error")
+            plt.errorbar(x,y, yerr=e, label=name + " error")
         else:
             plt.plot(x,y, 'k+-', label=name)
 
