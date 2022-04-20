@@ -97,7 +97,7 @@ def Default():  #We stablish a default values
     errorChoice.set(1)
 
 def callback():
-    webbrowser.open_new("https://www.google.es/")
+    webbrowser.open_new("https://github.com/JuanFermar/PythonTFG")
     pop.destroy
 
 def CodeSource():   #generate the window with github url
