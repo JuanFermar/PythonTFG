@@ -111,7 +111,7 @@ def CodeSource():   #generate the window with github url
     global pic 
     global new_pic
 
-    pic = PIL.Image.open("C:\\PythonTFG\\github.png")
+    pic = PIL.Image.open("C:\\PythonTFG\\assets\\github.png")
 
     resized = pic.resize((40, 40), PIL.Image.ANTIALIAS)
     
